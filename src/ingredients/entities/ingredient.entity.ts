@@ -1,5 +1,6 @@
 import { Image } from 'src/images/entities/image.entity';
-import { Column, Entity, OneToMany, PrimaryColumn, PrimaryGeneratedColumn } from 'typeorm';
+import { Dish } from 'src/dishes/entities/dish.entity';
+import { Column, Entity, ManyToMany, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class Ingredient {
@@ -19,6 +20,11 @@ export class Ingredient {
             eager: true
             }
         )
-        images?: Image[];        
+        images?: Image[];           
+        @ManyToMany(
+            () => Dish,
+            (dish) => dish.ingredient
+        )
+        dishes: Dish[];
 }
 export default Ingredient;

@@ -13,7 +13,10 @@ export class Image {
     url: string;
     @ManyToOne(
         () => Ingredient,
-        (ingredient) => ingredient.images,
+        (ingredient) => ingredient.images,{
+            cascade: true,
+            eager: true
+        }
         
     )
     ingredient: Ingredient;
